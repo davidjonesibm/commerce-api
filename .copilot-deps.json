@@ -1,0 +1,12 @@
+{
+  "source": "davidjonesibm/agents",
+  "ref": "main",
+  "skills": [
+    "mediatr-pro",
+    "dapper-pro",
+    "dotnet-server",
+    "postgres-pro",
+    "docker-pro",
+    "rug-routing"
+  ]
+}

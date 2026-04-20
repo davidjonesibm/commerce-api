@@ -1,3 +1,6 @@
 {
-  "dotnet.defaultSolution": "commerceApi.sln"
+  "dotnet.defaultSolution": "commerceApi.sln",
+  "chat.tools.terminal.autoApprove": {
+    "dotnet build": true
+  }
 }

@@ -1,0 +1,93 @@
+# =============================================================================
+
+# .dockerignore — Files excluded from the Docker build context
+
+# =============================================================================
+
+#
+
+# WHAT THIS FILE DOES:
+
+# When you run `docker build`, Docker sends ALL files in the build context
+
+# directory to the Docker daemon. This file works like .gitignore — it
+
+# prevents unnecessary files from being sent, which:
+
+# 1. Speeds up the build (less data to transfer)
+
+# 2. Prevents accidentally including secrets or large files in the image
+
+# 3. Improves cache efficiency (irrelevant file changes won't bust cache)
+
+#
+
+# =============================================================================
+
+# --- Version control ---
+
+# The .git directory can be huge and is never needed inside a container.
+
+.git/
+.gitignore
+.gitattributes
+
+# --- Build outputs ---
+
+# These are compiled locally and will be rebuilt inside the container.
+
+# Including them would waste space and could cause architecture mismatches
+
+# (e.g., building on macOS ARM but running on Linux x86).
+
+**/bin/
+**/obj/
+
+# --- IDE and editor files ---
+
+# Editor configs, workspace settings, and debug configs are developer-specific.
+
+.vs/
+.vscode/
+.idea/
+_.user
+_.suo
+
+# --- OS files ---
+
+.DS_Store
+Thumbs.db
+
+# --- Environment and secrets ---
+
+# NEVER include .env files in Docker images — they contain credentials.
+
+# Only .env.example (which has placeholder values) is safe.
+
+.env
+.env.\*
+!.env.example
+
+# --- Docker files ---
+
+# Prevents circular inclusion and keeps the context clean.
+
+\*_/Dockerfile_
+.dockerignore
+docker-compose*.yml
+compose*.yaml
+
+# --- Documentation ---
+
+# Not needed at build time.
+
+README.md
+CHANGELOG.md
+LICENSE
+docs/
+
+# --- Database init scripts ---
+
+# These are for docker-compose volume mounts, not for the API image.
+
+db/
