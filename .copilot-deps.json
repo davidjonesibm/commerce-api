@@ -1,6 +1,7 @@
 {
   "source": "davidjonesibm/agents",
   "ref": "main",
+  "agents": ["architect", "backend-engineer", "full-stack-engineer"],
   "skills": [
     "mediatr-pro",
     "dapper-pro",
