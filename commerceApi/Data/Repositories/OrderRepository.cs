@@ -141,9 +141,11 @@ public class OrderRepository : IOrderRepository
                 // If there IS an order item in this row (not null from LEFT JOIN),
                 // add it to the order's Items list.
                 // When the LEFT JOIN finds no matching items, Dapper creates an
-                // OrderItem with all default values. We check ItemId (mapped from
-                // oi.id) to distinguish real items from empty LEFT JOIN results.
-                if (orderItem.Id != 0)
+                // OrderItem with all default values. We check ProductId (mapped from
+                // oi.product_id) to distinguish real items from empty LEFT JOIN results.
+                // Note: the SQL aliases oi.id as "ItemId" which doesn't match the
+                // OrderItem.Id property name, so Id would always be 0 — use ProductId instead.
+                if (orderItem.ProductId != 0)
                 {
                     existingOrder.Items!.Add(orderItem);
                 }
