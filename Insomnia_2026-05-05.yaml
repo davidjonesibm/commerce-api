@@ -1,0 +1,1373 @@
+type: spec.insomnia.rest/5.0
+schema_version: '5.1'
+name: commerceApi | v1 1.0.0
+meta:
+  id: wrk_ee7ea13f88984a27ae9aef4b54618d29
+  created: 1777989406085
+  modified: 1777989406085
+  description: ''
+collection:
+  - name: Customers
+    meta:
+      id: fld_0870d2b59b934482af9c366edda5d0ad
+      created: 1777918757827
+      modified: 1777918757827
+      sortKey: -1777918757827
+      description: ''
+    children:
+      - url: '{{ _.base_url }}/api/Customers'
+        name: GET /api/Customers - seeded list
+        meta:
+          id: req_29382225557442a2bac0f3cfb9c2a85a
+          created: 1777918757829
+          modified: 1777918757829
+          isPrivate: false
+          description: ''
+          sortKey: -700
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: '{{ _.base_url }}/api/Customers/:id'
+        name: GET /api/Customers/{id} - existing customer
+        meta:
+          id: req_3821b0c9f5494c6f81b0ace4a1c2c9b5
+          created: 1777918757829
+          modified: 1777918757829
+          isPrivate: false
+          description: ''
+          sortKey: -600
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: '1'
+      - url: '{{ _.base_url }}/api/Customers/:id'
+        name: GET /api/Customers/{id} - missing customer
+        meta:
+          id: req_0f88ab0eeb0942b8b3b5df31c9ef4d8b
+          created: 1777995000001
+          modified: 1777995000001
+          isPrivate: false
+          description: ''
+          sortKey: -500
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: '999'
+      - url: '{{ _.base_url }}/api/Customers'
+        name: POST /api/Customers - create customer
+        meta:
+          id: req_8d17efc5d80744b0bfc1b92ca7cc0103
+          created: 1777918757829
+          modified: 1777918757829
+          isPrivate: false
+          description: ''
+          sortKey: -400
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "firstName": "string",
+              "lastName": "string",
+              "email": "string"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: '{{ _.base_url }}/api/Customers'
+        name: POST /api/Customers - duplicate email rejected
+        meta:
+          id: req_7a22c74bc9cd4ae1bc09f65c814e7721
+          created: 1777995000002
+          modified: 1777995000002
+          isPrivate: false
+          description: ''
+          sortKey: -300
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "firstName": "string",
+              "lastName": "string",
+              "email": "string"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: '{{ _.base_url }}/api/Customers/:id'
+        name: PUT /api/Customers/{id} - update seeded customer
+        meta:
+          id: req_7e997837ae774524a68a510f48831bee
+          created: 1777918757830
+          modified: 1777918757830
+          isPrivate: false
+          description: ''
+          sortKey: -200
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "id": 0,
+              "firstName": "string",
+              "lastName": "string",
+              "email": "string"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: '{{ _.base_url }}/api/Customers/:id'
+        name: DELETE /api/Customers/{id} - blocked by orders
+        meta:
+          id: req_c7e41f2a03a24bf995ea78d1a2aaa661
+          created: 1777918757830
+          modified: 1777918757830
+          isPrivate: false
+          description: ''
+          sortKey: -100
+        method: DELETE
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: '1'
+      - url: '{{ _.base_url }}/api/Customers/:id'
+        name: DELETE /api/Customers/{id} - succeeds without orders
+        meta:
+          id: req_e97e85d79dbe40db9ffc42d8a2bc54b2
+          created: 1777995000003
+          modified: 1777995000003
+          isPrivate: false
+          description: ''
+          sortKey: 0
+        method: DELETE
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: '3'
+  - name: Orders
+    meta:
+      id: fld_a1aed087b91f4f04a4e5059f3ba8ddf5
+      created: 1777918757827
+      modified: 1777993750731
+      sortKey: -1777918757827
+      description: ''
+    children:
+      - url: '{{ _.base_url }}/api/orders/:id'
+        name: GET /api/orders/{id} - existing order
+        meta:
+          id: req_1a6a67846d40417bb76191b0014c9234
+          created: 1777918757828
+          modified: 1777919060610
+          isPrivate: false
+          description: ''
+          sortKey: -500
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: '1'
+      - url: '{{ _.base_url }}/api/orders'
+        name: GET /api/orders - seeded list
+        meta:
+          id: req_b6e54bb5a91049d6bebd5cb196fdd655
+          created: 1777918757828
+          modified: 1777993749535
+          isPrivate: false
+          description: ''
+          sortKey: -600
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: '{{ _.base_url }}/api/orders/:id'
+        name: GET /api/orders/{id} - missing order
+        meta:
+          id: req_6d074af91aa148e8a3647a4d458d4414
+          created: 1777995000004
+          modified: 1777995000004
+          isPrivate: false
+          description: ''
+          sortKey: -400
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: '999'
+      - url: '{{ _.base_url }}/api/orders/customer/:customerId'
+        name: GET /api/orders/customer/{customerId} - customer with orders
+        meta:
+          id: req_8d8ba3d4343b42759baccd57a0b1f9e0
+          created: 1777918757829
+          modified: 1777990984907
+          isPrivate: false
+          description: ''
+          sortKey: -300
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: customerId
+            value: '1'
+      - url: '{{ _.base_url }}/api/orders/customer/:customerId'
+        name: GET /api/orders/customer/{customerId} - empty result
+        meta:
+          id: req_18f7dfc2205c4f9e8d52c9d4b3a091cb
+          created: 1777995000005
+          modified: 1777995000005
+          isPrivate: false
+          description: ''
+          sortKey: -200
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: customerId
+            value: '3'
+      - url: '{{ _.base_url }}/api/orders'
+        name: POST /api/orders - create order
+        meta:
+          id: req_f217997799d148c4869ab8deb1b1ce20
+          created: 1777918757828
+          modified: 1777918757828
+          isPrivate: false
+          description: ''
+          sortKey: -100
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "customerId": 0,
+              "items": [
+                {
+                  "productId": 0,
+                  "quantity": 0,
+                  "unitPrice": 0
+                }
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Products
+    meta:
+      id: fld_b713834b192c4267a792824fd3940366
+      created: 1777918757828
+      modified: 1777918757828
+      sortKey: -1777918757828
+      description: ''
+    children:
+      - url: '{{ _.base_url }}/api/Products'
+        name: GET /api/Products - seeded list
+        meta:
+          id: req_252466e48c13411ca9829b6c34f51968
+          created: 1777918757830
+          modified: 1777918982560
+          isPrivate: false
+          description: ''
+          sortKey: -700
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: '{{ _.base_url }}/api/Products'
+        name: POST /api/Products - create product
+        meta:
+          id: req_a5dbb88e44a2454ab213f18a5afd41d3
+          created: 1777918757830
+          modified: 1777918757830
+          isPrivate: false
+          description: ''
+          sortKey: -400
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "name": "string",
+              "description": "string",
+              "price": 0,
+              "stockQuantity": 0
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: '{{ _.base_url }}/api/Products/:id'
+        name: PUT /api/Products/{id} - update seeded product
+        meta:
+          id: req_bc04f4d80100456481e1c1bb000b8368
+          created: 1777918757830
+          modified: 1777918757830
+          isPrivate: false
+          description: ''
+          sortKey: -200
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "id": 0,
+              "name": "string",
+              "description": "string",
+              "price": 0,
+              "stockQuantity": 0
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: '{{ _.base_url }}/api/Products/:id'
+        name: GET /api/Products/{id} - existing product
+        meta:
+          id: req_faddd136e4f242dd8811bbb54bdc171b
+          created: 1777918757830
+          modified: 1777989444117
+          isPrivate: false
+          description: ''
+          sortKey: -600
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: '1'
+      - url: '{{ _.base_url }}/api/Products/:id'
+        name: GET /api/Products/{id} - missing product
+        meta:
+          id: req_1d6463cf60e84dfd94dccf85a5e57e1e
+          created: 1777995000006
+          modified: 1777995000006
+          isPrivate: false
+          description: ''
+          sortKey: -500
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: '999'
+      - url: '{{ _.base_url }}/api/Products/:id'
+        name: DELETE /api/Products/{id} - blocked by order references
+        meta:
+          id: req_95a62ce4a73d484d9b0497d9119418a7
+          created: 1777918757831
+          modified: 1777918757831
+          isPrivate: false
+          description: ''
+          sortKey: -100
+        method: DELETE
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: '1'
+      - url: '{{ _.base_url }}/api/Products/:id'
+        name: DELETE /api/Products/{id} - succeeds without references
+        meta:
+          id: req_13ef6f7fe5fe4f889ec5717a1aa65e42
+          created: 1777995000007
+          modified: 1777995000007
+          isPrivate: false
+          description: ''
+          sortKey: 0
+        method: DELETE
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: '5'
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_a45e8f1fb5744ac49241aa9c0e7372f4
+    created: 1777918757883
+    modified: 1777993750730
+environments:
+  name: Base environment
+  meta:
+    id: env_8274cb2155ac4411a52abc425176acaf
+    created: 1777918757827
+    modified: 1777993750730
+    isPrivate: false
+  data:
+    base_url: '{{ _.scheme }}://{{ _.host }}{{ _.base_path }}'
+  subEnvironments:
+    - name: OpenAPI env [::]:8080
+      meta:
+        id: env_80cfbfec58eb4a88a4f167fa1de6990c
+        created: 1777918757827
+        modified: 1777993750730
+        isPrivate: false
+        sortKey: 1777918757827
+      data:
+        scheme: http
+        base_path: ''
+        host: localhost:5032
+spec:
+  contents:
+    type: spec.insomnia.rest/5.0
+    schema_version: '5.1'
+    name: commerceApi | v1 1.0.0
+    meta:
+      id: wrk_2a8a3dc316334da39f8ac4e907f90528
+      created: 1777918757825
+      modified: 1777918757825
+      description: ''
+    collection:
+      - name: Orders
+        meta:
+          id: fld_5de4c2d705ed459c9f624be40a44d3f2
+          created: 1777918757827
+          modified: 1777918757827
+          sortKey: -1777918757827
+          description: ''
+        children:
+          - url: '{{ _.base_url }}/api/orders/:id'
+            name: /api/orders/{id}
+            meta:
+              id: req_1463c3995fcc4bc5af48b37391849478
+              created: 1777918757828
+              modified: 1777919060610
+              isPrivate: false
+              description: ''
+              sortKey: -1777918757828
+            method: GET
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: id
+                value: '2'
+          - url: '{{ _.base_url }}/api/orders'
+            name: /api/orders
+            meta:
+              id: req_71744aacb0224503b81cce2cdea36c9c
+              created: 1777918757828
+              modified: 1777918757828
+              isPrivate: false
+              description: ''
+              sortKey: -1777918757828
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                  "customerId": 0,
+                  "items": [
+                    {
+                      "productId": 0,
+                      "quantity": 0,
+                      "unitPrice": 0
+                    }
+                  ]
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: '{{ _.base_url }}/api/orders'
+            name: /api/orders
+            meta:
+              id: req_98cb46ea286445af9ace41ca6cbb68fb
+              created: 1777918757828
+              modified: 1777918757828
+              isPrivate: false
+              description: ''
+              sortKey: -1777918757828
+            method: GET
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: '{{ _.base_url }}/api/orders/customer/:customerId'
+            name: /api/orders/customer/{customerId}
+            meta:
+              id: req_dab0094dfa0e411695e90912960e2a66
+              created: 1777918757829
+              modified: 1777918757829
+              isPrivate: false
+              description: ''
+              sortKey: -1777918757829
+            method: GET
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: Customers
+        meta:
+          id: fld_ab965117ef9d4a1cb2ac76df09d97f42
+          created: 1777918757827
+          modified: 1777918757827
+          sortKey: -1777918757827
+          description: ''
+        children:
+          - url: '{{ _.base_url }}/api/Customers'
+            name: /api/Customers
+            meta:
+              id: req_271829bfb7034045899a99af6f716a2e
+              created: 1777918757829
+              modified: 1777918757829
+              isPrivate: false
+              description: ''
+              sortKey: -1777918757829
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                  "firstName": "string",
+                  "lastName": "string",
+                  "email": "string"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: '{{ _.base_url }}/api/Customers'
+            name: /api/Customers
+            meta:
+              id: req_7f5294a60f3f4704a66c1dbddc736cba
+              created: 1777918757829
+              modified: 1777918757829
+              isPrivate: false
+              description: ''
+              sortKey: -1777918757829
+            method: GET
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: '{{ _.base_url }}/api/Customers/:id'
+            name: /api/Customers/{id}
+            meta:
+              id: req_a84cedd760ff4b1fab6782c1184832ee
+              created: 1777918757829
+              modified: 1777918757829
+              isPrivate: false
+              description: ''
+              sortKey: -1777918757829
+            method: GET
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: '{{ _.base_url }}/api/Customers/:id'
+            name: /api/Customers/{id}
+            meta:
+              id: req_937774053ee547409fe9ff79b89990dd
+              created: 1777918757830
+              modified: 1777918757830
+              isPrivate: false
+              description: ''
+              sortKey: -1777918757830
+            method: PUT
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                  "id": 0,
+                  "firstName": "string",
+                  "lastName": "string",
+                  "email": "string"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: '{{ _.base_url }}/api/Customers/:id'
+            name: /api/Customers/{id}
+            meta:
+              id: req_d868bb749f3d4d11adfaa2dcadaa8aa4
+              created: 1777918757830
+              modified: 1777918757830
+              isPrivate: false
+              description: ''
+              sortKey: -1777918757830
+            method: DELETE
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: Products
+        meta:
+          id: fld_30c4001951f549a59e040d5991fc2ac5
+          created: 1777918757828
+          modified: 1777918757828
+          sortKey: -1777918757828
+          description: ''
+        children:
+          - url: '{{ _.base_url }}/api/Products/:id'
+            name: /api/Products/{id}
+            meta:
+              id: req_0929413073f74dcea9403235a9cf1bd9
+              created: 1777918757830
+              modified: 1777918757830
+              isPrivate: false
+              description: ''
+              sortKey: -1777918757830
+            method: PUT
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                  "id": 0,
+                  "name": "string",
+                  "description": "string",
+                  "price": 0,
+                  "stockQuantity": 0
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: '{{ _.base_url }}/api/Products'
+            name: /api/Products
+            meta:
+              id: req_50841dd1b6674abc8edc7475ee5184b1
+              created: 1777918757830
+              modified: 1777918757830
+              isPrivate: false
+              description: ''
+              sortKey: -1777918757830
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                  "name": "string",
+                  "description": "string",
+                  "price": 0,
+                  "stockQuantity": 0
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: '{{ _.base_url }}/api/Products'
+            name: /api/Products
+            meta:
+              id: req_7e21335de5c548fab29985b79bdd7060
+              created: 1777918757830
+              modified: 1777918982560
+              isPrivate: false
+              description: ''
+              sortKey: -1777918757830
+            method: GET
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: '{{ _.base_url }}/api/Products/:id'
+            name: /api/Products/{id}
+            meta:
+              id: req_fcec5d8135cf4910acffc9e4f833fc91
+              created: 1777918757830
+              modified: 1777918757830
+              isPrivate: false
+              description: ''
+              sortKey: -1777918757830
+            method: GET
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: '{{ _.base_url }}/api/Products/:id'
+            name: /api/Products/{id}
+            meta:
+              id: req_f8978364f9844212825cb32c27fd412e
+              created: 1777918757831
+              modified: 1777918757831
+              isPrivate: false
+              description: ''
+              sortKey: -1777918757831
+            method: DELETE
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+    cookieJar:
+      name: Default Jar
+      meta:
+        id: jar_54e85b905fec00e20b4ba5305279d3dde7589431
+        created: 1777918757883
+        modified: 1777918757883
+    environments:
+      name: Base environment
+      meta:
+        id: env_2eaf066aba86422996e876f8eeda02cb
+        created: 1777918757827
+        modified: 1777918956079
+        isPrivate: false
+      data:
+        base_url: '{{ _.scheme }}://{{ _.host }}{{ _.base_path }}'
+      subEnvironments:
+        - name: OpenAPI env [::]:8080
+          meta:
+            id: env_9958d04739c642f4aa12e42a8dd1aeb7
+            created: 1777918757827
+            modified: 1777919028262
+            isPrivate: false
+            sortKey: 1777918757827
+          data:
+            scheme: http
+            base_path: ''
+            host: localhost:5032
+    spec:
+      contents:
+        openapi: 3.0.1
+        info:
+          title: commerceApi | v1
+          version: 1.0.0
+        servers:
+          - url: http://[::]:8080
+        paths:
+          /api/orders:
+            get:
+              tags:
+                - Orders
+              responses:
+                '200':
+                  description: OK
+            post:
+              tags:
+                - Orders
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/CreateOrderCommand'
+                required: true
+              responses:
+                '200':
+                  description: OK
+          /api/orders/{id}:
+            get:
+              tags:
+                - Orders
+              parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int32
+              responses:
+                '200':
+                  description: OK
+          /api/orders/customer/{customerId}:
+            get:
+              tags:
+                - Orders
+              parameters:
+                - name: customerId
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int32
+              responses:
+                '200':
+                  description: OK
+          /api/Customers:
+            get:
+              tags:
+                - Customers
+              responses:
+                '200':
+                  description: OK
+                  content:
+                    text/plain:
+                      schema:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Customer'
+                    application/json:
+                      schema:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Customer'
+                    text/json:
+                      schema:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Customer'
+            post:
+              tags:
+                - Customers
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/CreateCustomerCommand'
+                  text/json:
+                    schema:
+                      $ref: '#/components/schemas/CreateCustomerCommand'
+                  application/*+json:
+                    schema:
+                      $ref: '#/components/schemas/CreateCustomerCommand'
+                required: true
+              responses:
+                '200':
+                  description: OK
+                  content:
+                    text/plain:
+                      schema:
+                        $ref: '#/components/schemas/Customer'
+                    application/json:
+                      schema:
+                        $ref: '#/components/schemas/Customer'
+                    text/json:
+                      schema:
+                        $ref: '#/components/schemas/Customer'
+          /api/Customers/{id}:
+            get:
+              tags:
+                - Customers
+              parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int32
+              responses:
+                '200':
+                  description: OK
+                  content:
+                    text/plain:
+                      schema:
+                        $ref: '#/components/schemas/Customer'
+                    application/json:
+                      schema:
+                        $ref: '#/components/schemas/Customer'
+                    text/json:
+                      schema:
+                        $ref: '#/components/schemas/Customer'
+            put:
+              tags:
+                - Customers
+              parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int32
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/UpdateCustomerCommand'
+                  text/json:
+                    schema:
+                      $ref: '#/components/schemas/UpdateCustomerCommand'
+                  application/*+json:
+                    schema:
+                      $ref: '#/components/schemas/UpdateCustomerCommand'
+                required: true
+              responses:
+                '200':
+                  description: OK
+            delete:
+              tags:
+                - Customers
+              parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int32
+              responses:
+                '200':
+                  description: OK
+          /api/Products:
+            get:
+              tags:
+                - Products
+              responses:
+                '200':
+                  description: OK
+                  content:
+                    text/plain:
+                      schema:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Product'
+                    application/json:
+                      schema:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Product'
+                    text/json:
+                      schema:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Product'
+            post:
+              tags:
+                - Products
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/CreateProductCommand'
+                  text/json:
+                    schema:
+                      $ref: '#/components/schemas/CreateProductCommand'
+                  application/*+json:
+                    schema:
+                      $ref: '#/components/schemas/CreateProductCommand'
+                required: true
+              responses:
+                '200':
+                  description: OK
+                  content:
+                    text/plain:
+                      schema:
+                        $ref: '#/components/schemas/Product'
+                    application/json:
+                      schema:
+                        $ref: '#/components/schemas/Product'
+                    text/json:
+                      schema:
+                        $ref: '#/components/schemas/Product'
+          /api/Products/{id}:
+            get:
+              tags:
+                - Products
+              parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int32
+              responses:
+                '200':
+                  description: OK
+                  content:
+                    text/plain:
+                      schema:
+                        $ref: '#/components/schemas/Product'
+                    application/json:
+                      schema:
+                        $ref: '#/components/schemas/Product'
+                    text/json:
+                      schema:
+                        $ref: '#/components/schemas/Product'
+            put:
+              tags:
+                - Products
+              parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int32
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/UpdateProductCommand'
+                  text/json:
+                    schema:
+                      $ref: '#/components/schemas/UpdateProductCommand'
+                  application/*+json:
+                    schema:
+                      $ref: '#/components/schemas/UpdateProductCommand'
+                required: true
+              responses:
+                '200':
+                  description: OK
+            delete:
+              tags:
+                - Products
+              parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int32
+              responses:
+                '200':
+                  description: OK
+        components:
+          schemas:
+            CreateCustomerCommand:
+              required:
+                - firstName
+                - lastName
+                - email
+              type: object
+              properties:
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                email:
+                  type: string
+            CreateOrderCommand:
+              required:
+                - customerId
+                - items
+              type: object
+              properties:
+                customerId:
+                  type: integer
+                  format: int32
+                items:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/OrderItemDto'
+            CreateProductCommand:
+              required:
+                - name
+                - description
+                - price
+                - stockQuantity
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                  nullable: true
+                price:
+                  type: number
+                  format: double
+                stockQuantity:
+                  type: integer
+                  format: int32
+            Customer:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int32
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                email:
+                  type: string
+                createdAt:
+                  type: string
+                  format: date-time
+            OrderItemDto:
+              required:
+                - productId
+                - quantity
+                - unitPrice
+              type: object
+              properties:
+                productId:
+                  type: integer
+                  format: int32
+                quantity:
+                  type: integer
+                  format: int32
+                unitPrice:
+                  type: number
+                  format: double
+            Product:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int32
+                name:
+                  type: string
+                description:
+                  type: string
+                  nullable: true
+                price:
+                  type: number
+                  format: double
+                stockQuantity:
+                  type: integer
+                  format: int32
+                createdAt:
+                  type: string
+                  format: date-time
+            UpdateCustomerCommand:
+              required:
+                - id
+                - firstName
+                - lastName
+                - email
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int32
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                email:
+                  type: string
+            UpdateProductCommand:
+              required:
+                - id
+                - name
+                - description
+                - price
+                - stockQuantity
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int32
+                name:
+                  type: string
+                description:
+                  type: string
+                  nullable: true
+                price:
+                  type: number
+                  format: double
+                stockQuantity:
+                  type: integer
+                  format: int32
+        tags:
+          - name: Orders
+          - name: Customers
+          - name: Products
+      meta:
+        id: spc_5d6a197350ee4bbeb0125717296b2a05
+        created: 1777918757826
+        modified: 1777918757826
+  meta:
+    id: spc_9777767a5f70451aabda156b3790ea64
+    created: 1777989406086
+    modified: 1777989406087

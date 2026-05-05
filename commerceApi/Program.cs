@@ -156,3 +156,7 @@ app.MapControllers();
 app.MapOrderEndpoints();
 
 app.Run();
+
+// Make the Program class accessible to the integration test project
+// (WebApplicationFactory<Program> requires a public entry point)
+public partial class Program { }

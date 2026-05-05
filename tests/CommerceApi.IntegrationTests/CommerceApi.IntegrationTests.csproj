@@ -1,0 +1,155 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!--
+      ============================================================================
+      COMMERCEAPI.INTEGRATIONTESTS.CSPROJ — THE TEST PROJECT'S TOOLBOX
+      ============================================================================
+
+      This project file defines EVERYTHING the integration test suite needs in order
+      to boot the real API, talk to a real PostgreSQL database, and verify behavior
+      end-to-end.
+
+      Think of this file as the "shopping list" for the test infrastructure:
+      - xUnit gives us the test framework
+      - Microsoft.AspNetCore.Mvc.Testing hosts the API in-process
+      - Testcontainers starts a throwaway PostgreSQL Docker container
+      - Npgsql talks to PostgreSQL from .NET
+      - Respawn resets the database between tests
+
+      WHY SO MANY PIECES?
+      ───────────────────
+      Integration tests exercise the FULL stack:
+
+      HTTP client → ASP.NET Core pipeline → MediatR/handlers/repositories → PostgreSQL
+
+      That means we need packages for:
+      1. Running tests
+      2. Hosting the API during tests
+      3. Provisioning a disposable database
+      4. Connecting to that database
+      5. Returning the database to a clean state between tests
+    -->
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--
+      Hosts the ASP.NET Core app inside the test process.
+
+      LEARNING NOTE: This is what powers WebApplicationFactory<Program>.
+      Instead of starting the API separately and sending requests across the network,
+      the test suite boots the real ASP.NET Core pipeline in-process.
+
+      Practical effect:
+      - Faster than launching a separate server process
+      - Uses the app's real Program.cs wiring
+      - Lets tests override configuration/DI in ConfigureWebHost
+    -->
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="9.0.0" />
+
+    <!--
+      The core .NET test platform package.
+
+      WHY IS THIS NEEDED IF WE ALREADY USE xUnit?
+      xUnit is the framework that DEFINES tests.
+      Microsoft.NET.Test.Sdk is what lets `dotnet test` DISCOVER and RUN them.
+
+      Think of it this way:
+      - xUnit = the language the tests are written in
+      - Test SDK = the engine that finds and executes them
+    -->
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+
+    <!--
+      PostgreSQL driver for .NET.
+
+      LEARNING NOTE: Testcontainers gives us a running PostgreSQL container,
+      but it does NOT provide a .NET database client. Npgsql is the client library
+      our fixture uses to open connections, initialize Respawn, and reset the DB.
+    -->
+    <PackageReference Include="Npgsql" Version="9.0.3" />
+
+    <!--
+      Smart database reset library for integration tests.
+
+      WHY RESPawn INSTEAD OF DROPPING/RECREATING THE DATABASE?
+      Recreating the whole database for every test would be much slower.
+      Respawn analyzes the schema once, figures out a safe delete order that respects
+      foreign keys, and then clears data quickly between tests.
+
+      RELATIONSHIP TO OTHER PACKAGES:
+      - Testcontainers gives us the disposable database server
+      - Npgsql opens connections to that server
+      - Respawn wipes data inside that server between test runs
+    -->
+    <PackageReference Include="Respawn" Version="7.0.0" />
+
+    <!--
+      Testcontainers module specialized for PostgreSQL.
+
+      WHY TESTCONTAINERS?
+      It lets the tests spin up a REAL PostgreSQL instance in Docker on demand.
+      That gives us much higher confidence than in-memory substitutes or SQLite,
+      because the application is using the same database engine family as production.
+
+      LEARNING NOTE: This package sits "under" the fixture layer.
+      PostgresFixture uses it to:
+      - pull/run the postgres image
+      - generate a connection string
+      - execute schema/seed SQL inside the container
+      - clean everything up after the test suite finishes
+    -->
+    <PackageReference Include="Testcontainers.PostgreSql" Version="4.4.0" />
+
+    <!--
+      The xUnit test framework itself.
+
+      This provides attributes and abstractions like:
+      - [Fact]
+      - [Theory]
+      - IAsyncLifetime
+      - ICollectionFixture<T>
+
+      In other words, xUnit defines how we AUTHOR tests and shared fixtures.
+    -->
+    <PackageReference Include="xunit" Version="2.9.3" />
+
+    <!--
+      Visual Studio / `dotnet test` runner integration for xUnit.
+
+      WHY THE EXTRA PACKAGE?
+      The `xunit` package defines the framework, but this runner adapter helps IDEs
+      and the .NET test host discover and report xUnit tests correctly.
+
+      IncludeAssets / PrivateAssets keep this dependency as test-only plumbing:
+      - available to this project while building/running tests
+      - not flowed transitively to projects that reference this one
+    -->
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <!--
+      References the actual API project under test.
+
+      WHY A PROJECT REFERENCE INSTEAD OF HITTING A PUBLISHED APP?
+      WebApplicationFactory<Program> needs direct access to the application's entry
+      point so it can boot the real ASP.NET Core host in-process during tests.
+
+      This enables the test project to:
+      - compile against the API's Program class
+      - start the real application pipeline without manually launching it
+      - reuse the application's real DI registrations, middleware, endpoints, and config
+    -->
+    <ProjectReference Include="..\..\commerceApi\commerceApi.csproj" />
+  </ItemGroup>
+
+</Project>

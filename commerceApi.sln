@@ -5,6 +5,10 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "commerceApi", "commerceApi\commerceApi.csproj", "{72A24800-9ACD-43F2-B13D-436E5F1F16AB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{375CA283-C80E-4156-8DC8-558606089958}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommerceApi.IntegrationTests", "tests\CommerceApi.IntegrationTests\CommerceApi.IntegrationTests.csproj", "{ACD5BBA7-24B5-4242-9FDE-DAE30321A487}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,12 @@ Global
 		{72A24800-9ACD-43F2-B13D-436E5F1F16AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72A24800-9ACD-43F2-B13D-436E5F1F16AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72A24800-9ACD-43F2-B13D-436E5F1F16AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACD5BBA7-24B5-4242-9FDE-DAE30321A487}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACD5BBA7-24B5-4242-9FDE-DAE30321A487}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACD5BBA7-24B5-4242-9FDE-DAE30321A487}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACD5BBA7-24B5-4242-9FDE-DAE30321A487}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{ACD5BBA7-24B5-4242-9FDE-DAE30321A487} = {375CA283-C80E-4156-8DC8-558606089958}
 	EndGlobalSection
 EndGlobal
