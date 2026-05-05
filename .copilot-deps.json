@@ -1,13 +1,25 @@
 {
   "source": "davidjonesibm/agents",
   "ref": "main",
-  "agents": ["architect", "backend-engineer", "full-stack-engineer"],
+  "agents": [
+    "architect",
+    "backend-engineer",
+    "full-stack-engineer",
+    "test-writer",
+    "frontend-engineer"
+  ],
   "skills": [
-    "mediatr-pro",
-    "dapper-pro",
-    "dotnet-server",
+    "rug-routing",
+    "skill-builder",
+    "agent-builder",
     "postgres-pro",
+    "dotnet-server",
+    "dapper-pro",
     "docker-pro",
-    "rug-routing"
-  ]
+    "mediatr-pro",
+    "insomnia-pro",
+    "respawn-pro",
+    "testcontainers-dotnet-pro"
+  ],
+  "_comment": "Skills are synced to .github/skills/. If using oh-my-openagent (OpenCode), copy .opencode/oh-my-openagent.jsonc from the agent-repo to load them automatically."
 }
